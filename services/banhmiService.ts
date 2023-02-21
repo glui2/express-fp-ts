@@ -1,9 +1,10 @@
 import * as E from "fp-ts/lib/Either";
 import * as O from "fp-ts/lib/Option";
-import { BanhmiMeat, BanhmiService, NotSoldError } from "../interfaces/Banhmi";
+import { BanhmiService, NotSoldError } from "../interfaces/Banhmi";
 import { BanhMiStore } from "../store.ts/banhMiStore";
+import { BanhmiMeat } from "../types";
 
-export const banhMiRestaurant = (store: BanhMiStore): BanhmiService => {
+export const banhMiService = (store: BanhMiStore): BanhmiService => {
   return {
     checkIfRequestedMeatIsSold: (
       ingredient: string
@@ -20,7 +21,9 @@ export const banhMiRestaurant = (store: BanhMiStore): BanhmiService => {
     },
 
     reduceStock: (meat: BanhmiMeat) => {
+      // more error handlin
       store.reduceStock(meat);
+      return store.getMeatStock(meat);
     },
   };
 };

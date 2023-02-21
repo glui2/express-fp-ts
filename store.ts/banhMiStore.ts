@@ -1,6 +1,4 @@
-import * as O from "fp-ts/lib/Option";
-import * as E from "fp-ts/lib/Either";
-import { BanhmiMeat, NoStockError } from "../interfaces/Banhmi";
+import { BanhmiMeat } from "../types";
 
 export class BanhMiStore {
   pork: number;
@@ -34,11 +32,11 @@ export class BanhMiStore {
     if (this.getMeatStock(meat) != null) {
       switch (meat) {
         case "pork":
-          this.pork - 1;
+          this.pork -= 1;
         case "chicken":
-          this.chicken - 1;
+          this.chicken -= 1;
         case "tofu":
-          this.tofu - 1;
+          this.tofu -= 1;
       }
     }
   }

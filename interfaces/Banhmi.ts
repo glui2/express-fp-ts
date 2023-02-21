@@ -1,7 +1,6 @@
 import { Either } from "fp-ts/lib/Either";
 import { Option } from "fp-ts/lib/Option";
-
-export type BanhmiMeat = "pork" | "chicken" | "tofu";
+import { BanhmiMeat } from "../types";
 
 export class NotSoldError extends Error {
   public _tag: "BanhMiNotSoldError";
@@ -34,5 +33,5 @@ export interface BanhmiService {
     ingredient: string
   ): Either<NotSoldError, BanhmiMeat>;
   getRequestedMeat(meat: BanhmiMeat): Option<BanhmiMeat>;
-  reduceStock(meat: BanhmiMeat): void;
+  reduceStock(meat: BanhmiMeat): number;
 }
